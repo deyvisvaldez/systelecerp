@@ -1,9 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row page-titles">
-    <div class="col-md-5 col-8 align-self-center">
-        <h3 class="text-themecolor">Proveedores</h3>
+<header class="page-header">
+    <div class="container-fluid">
+        <h2 class="no-margin-bottom">Proveedores</h2>
     </div>
-</div>
+</header>
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="row bg-white has-shadow">
+            <proveedores></proveedores>
+        </div>
+    </div>
+</section>
 @endsection

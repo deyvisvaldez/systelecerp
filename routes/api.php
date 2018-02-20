@@ -16,3 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('cliente', 'Cliente\ClienteController', ['only' => ['index', 'store', 'update', 'destroy']]);
+Route::resource('contacto', 'Contacto\ContactoController', ['only' => ['index', 'store', 'update', 'destroy']]);
+Route::resource('obra', 'Obra\ObraController', ['only' => ['index', 'store', 'update', 'destroy']]);
+Route::resource('cotizacion', 'Cotizacion\CotizacionController', ['only' => ['index', 'store', 'update', 'destroy']]);
+Route::resource('presupuesto', 'Presupuesto\PresupuestoController', ['only' => ['index', 'store', 'update', 'destroy']]);
+Route::resource('proveedor', 'Proveedor\ProveedorController', ['only' => ['index', 'store', 'update', 'destroy']]);
+Route::resource('proveedor.catalogo', 'Proveedor\ProveedorController', ['only' => ['index', 'store', 'update', 'destroy']]);

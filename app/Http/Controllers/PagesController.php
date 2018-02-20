@@ -23,7 +23,7 @@ class PagesController extends Controller
      */
     public function dashboard()
     {
-        return view('dashboard');
+        return view('layouts.dashboard');
     }
 
     public function indicadores() 
@@ -31,14 +31,14 @@ class PagesController extends Controller
         return view('indicadores');
     }
 
+    public function obras_proyectos() 
+    {
+        return view('obras_proyectos');
+    }
+
     public function presupuestos() 
     {
         return view('presupuestos');
-    }
-
-    public function proyectos() 
-    {
-        return view('proyectos');
     }
 
     public function ordenes_compras() 

@@ -11,29 +11,18 @@
 
     <title>Systelec ERP</title>
 
-    <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
-    <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
-    <!-- Font Awesome CSS-->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}">
-    <!-- Fontastic Custom icon font-->
     <link rel="stylesheet" href="{{ asset('css/fontastic.css') }}">
-    <!-- Google fonts - Poppins -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-    <!-- theme stylesheet-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.default.css') }}" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    @section('css')
+    @show
 </head>
-<body>
-        @section('login')
-        @show
-
-        @section('registre')
-        @show
-
-        
-        @section('total')
+<body>       
+        @section('body')
         <div class="page">
                 <header class="header">
                     <nav class="navbar">
@@ -128,35 +117,32 @@
                         </div>
                         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
                         <ul class="list-unstyled">
-                                <li class="{{  Request::is('indicadores*') ? 'active' : null }}"><a href="{{ route('indicadores') }}"> <i class="icon-home"></i>Indicadores </a></li>
-                                <li class="{{  Request::is('presupuestos*') ? 'active' : null }}"><a href="{{ route('presupuestos') }}"> <i class="icon-grid"></i>Presupuesto </a></li>
-                                <li class="{{  Request::is('proyectos*') ? 'active' : null }}"><a href="{{ route('proyectos') }}"> <i class="fa fa-bar-chart"></i>Proyectos </a></li>
-                                <li class="{{  Request::is('ordenes_compras*') ? 'active' : null }}"><a href="{{ route('ordenes_compras') }}"> <i class="icon-padnote"></i>Ordenes de compras </a></li>
-                                <li class="{{  Request::is('stocks*') ? 'active' : null }}"><a href="{{ route('stocks') }}"> <i class="icon-padnote"></i>Stock </a></li>
-                                <li class="{{  Request::is('clientes*') ? 'active' : null }}"><a href="{{ route('clientes') }}"> <i class="icon-interface-windows"></i>Clientes </a></li>
-                                <li class="{{  Request::is('proveedores*') ? 'active' : null }}"><a href="{{ route('proveedores') }}"> <i class="icon-interface-windows"></i>Proveedores </a></li>
+                                <li class="{{  Request::is('indicadores*') ? 'active' : null }}"><a href="{{ route('indicadores') }}"> <i class="fa fa-line-chart"></i>Indicadores </a></li>
+                                <li class="{{  Request::is('obras_proyectos*') ? 'active' : null }}"><a href="{{ route('obras_proyectos') }}"> <i class="fa fa-calendar-check-o"></i>Obras y Proyectos </a></li>
+                                <li class="{{  Request::is('presupuestos*') ? 'active' : null }}"><a href="{{ route('presupuestos') }}"> <i class="fa fa-money"></i>Presupuestos </a></li>
+                                <li class="{{  Request::is('ordenes_compras*') ? 'active' : null }}"><a href="{{ route('ordenes_compras') }}"> <i class="fa fa-credit-card"></i>Ordenes de compras </a></li>
+                                <li class="{{  Request::is('stocks*') ? 'active' : null }}"><a href="{{ route('stocks') }}"> <i class="fa fa-archive"></i>Stock </a></li>
+                                <li class="{{  Request::is('clientes*') ? 'active' : null }}"><a href="{{ route('clientes') }}"> <i class="fa fa-address-card-o"></i>Clientes </a></li>
+                                <li class="{{  Request::is('proveedores*') ? 'active' : null }}"><a href="{{ route('proveedores') }}"> <i class="fa fa-group"></i>Proveedores </a></li>
                         </ul><span class="heading">Extras</span>
                         <ul class="list-unstyled">
-                        <li class="{{  Request::is('configuraciones*') ? 'active' : null }}"><a href="{{ route('configuraciones') }}"> <i class="icon-flask"></i>Configuraciones </a></li>
+                        <li class="{{  Request::is('configuraciones*') ? 'active' : null }}"><a href="{{ route('configuraciones') }}"> <i class="fa fa-gears"></i>Configuraciones </a></li>
                         </ul>
                     </nav>
-                    @section('content')
-                    @show
-                    @if(Route::current()->getName() == 'testing')
-                        Hello This is testing
-                    @endif
+                    <div id="app" class="content-inner">
+                        @section('content')
+                        @show
+                    </div>
                 </div>
         </div>
         @show
     <!-- Scripts -->
-    <!--<script src="{{ asset('js/app.js') }}"></script>-->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="{{ asset('vendor/popper.js/umd/popper.min.js') }}"> </script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('vendor/jquery.cookie/jquery.cookie.js') }}"> </script>
     <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-validation/jquery.validate.min.js') }}"></script>
-    <!-- Main File-->
     <script src="{{ asset('js/front.js') }}"></script>
+    @section('js')
+    @show
 </body>
 </html>
