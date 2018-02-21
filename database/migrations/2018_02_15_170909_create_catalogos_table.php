@@ -23,7 +23,7 @@ class CreateCatalogosTable extends Migration
             $table->string('descripcion_adicional')->nullable();
             $table->string('costo_lista')->required();
             $table->string('costo_neto')->nullable();
-            $table->string('modeda')->required();
+            $table->string('moneda')->nullable();
             $table->string('iva')->nullable();
             $table->timestamps();
 

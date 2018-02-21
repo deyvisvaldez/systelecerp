@@ -3,14 +3,16 @@
     <b-btn v-b-tooltip.hover title="Agregar Catalogo" variant="primary" size="sm" @click="showModal">
       <i class="material-icons">library_add</i>
     </b-btn>
-
+    
     <b-modal ref="addCatalogoModal" hide-footer title="Agregar Catalogo">
-      <b-form  enctype="multipart/form-data" id="catalogo" @submit.stop.prevent="handleSubmit">
-
-      <b-form-file accept=".xls" v-model="file" :state="Boolean(file)" placeholder="Archivo seleccionado..."></b-form-file>
-      <b-button @click="clearFiles">Reset</b-button>
-
-      </b-form>
+      <form enctype="multipart/form-data" id="my-form">
+            <div class="form-group">
+                <label class="btn btn-primary">
+                    <i class="fa fa-folder-open-o" aria-hidden="true"></i>&nbsp;Seleccionar un archivo
+                    <input type="file" accept=".pdf" @change="onFileSelected" name="myfile">
+                </label>
+            </div>
+        </form>
       <b-btn variant="primary" @click="save()">Guardar</b-btn>
       <b-btn variant="danger" @click="hideModal()">Cerrar</b-btn>
     </b-modal>
@@ -78,12 +80,12 @@ export default {
         this.add()
       } else {
         this.fileValidate.isValid = true
-        this.fileValidate.text = 'Seleccione un archivo xls'
+        this.fileValidate.text = 'Seleccione un archivo .xls'
       }
     },
     
     add () {
-      this.$http.post(this.url + '/proveedor/' + this.proveedor.id + 'catalogo', this.file)
+      this.$http.post(this.url + '/proveedor/' + this.proveedor.id + '/catalogo', this.file)
       .then(response => {
         bus.$emit('subItems', response.data)  
         this.hideModal()
@@ -91,6 +93,20 @@ export default {
       }, response => {
         this.alertError()
       })
+    },
+
+    onFileSelected (event) {
+        const file = event.target.files[0];
+        const formData = new FormData($("#catalogo")[0]);
+        this.$http.post(this.url + '/proveedor/' + this.proveedor.id + '/catalogo', formData)
+        .then(res => {
+            bus.$emit('subItems', response.data)  
+        this.hideModal()
+        this.alertSuccess()
+        },
+        error => {
+            this.alertError()
+        })
     }
   }
 }

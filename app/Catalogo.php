@@ -19,7 +19,7 @@ class Catalogo extends Model
         'descripcion_adicional',
         'costo_lista',
         'costo_neto',
-        'modeda',
+        'moneda',
         'iva',
         'proveedor_id'
     );

@@ -23,4 +23,5 @@ Route::resource('obra', 'Obra\ObraController', ['only' => ['index', 'store', 'up
 Route::resource('cotizacion', 'Cotizacion\CotizacionController', ['only' => ['index', 'store', 'update', 'destroy']]);
 Route::resource('presupuesto', 'Presupuesto\PresupuestoController', ['only' => ['index', 'store', 'update', 'destroy']]);
 Route::resource('proveedor', 'Proveedor\ProveedorController', ['only' => ['index', 'store', 'update', 'destroy']]);
-Route::resource('proveedor.catalogo', 'Proveedor\ProveedorController', ['only' => ['index', 'store', 'update', 'destroy']]);
+Route::resource('proveedor.catalogo', 'Proveedor\ProveedorCatalogoController', ['only' => ['index', 'store', 'update', 'destroy']]);
+Route::post('importExcel', 'Proveedor\ProveedorCatalogoController@importExcel');

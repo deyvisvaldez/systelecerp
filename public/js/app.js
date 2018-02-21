@@ -77493,6 +77493,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -77521,12 +77524,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    clearFiles: function clearFiles() {
+      this.$refs.fileinput.reset();
+    },
     showModal: function showModal() {
       this.$refs.addCatalogoModal.show();
     },
     hideModal: function hideModal() {
-      alert(this.file);
-      this.clear();
       this.$refs.addCatalogoModal.hide();
     },
     alertError: function alertError(error) {
@@ -77540,18 +77544,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.add();
       } else {
         this.fileValidate.isValid = true;
-        this.fileValidate.text = 'Seleccione un archivo xls';
+        this.fileValidate.text = 'Seleccione un archivo .xls';
       }
     },
     add: function add() {
       var _this = this;
 
-      this.$http.post(this.url + '/proveedor/' + this.proveedor.id + 'catalogo', this.contacto).then(function (response) {
+      this.$http.post(this.url + '/proveedor/' + this.proveedor.id + '/catalogo', this.file).then(function (response) {
         __WEBPACK_IMPORTED_MODULE_1__app_js__["bus"].$emit('subItems', response.data);
         _this.hideModal();
         _this.alertSuccess();
       }, function (response) {
         _this.alertError();
+      });
+    },
+    onFileSelected: function onFileSelected(event) {
+      var _this2 = this;
+
+      var file = event.target.files[0];
+      var formData = new FormData($("#catalogo")[0]);
+      this.$http.post(this.url + '/proveedor/' + this.proveedor.id + '/catalogo', formData).then(function (res) {
+        __WEBPACK_IMPORTED_MODULE_1__app_js__["bus"].$emit('subItems', response.data);
+        _this2.hideModal();
+        _this2.alertSuccess();
+      }, function (error) {
+        _this2.alertError();
       });
     }
   }
@@ -77592,34 +77609,23 @@ var render = function() {
         },
         [
           _c(
-            "b-form",
-            {
-              attrs: { enctype: "multipart/form-data", id: "catalogo" },
-              on: {
-                submit: function($event) {
-                  $event.stopPropagation()
-                  $event.preventDefault()
-                  _vm.handleSubmit($event)
-                }
-              }
-            },
+            "form",
+            { attrs: { enctype: "multipart/form-data", id: "my-form" } },
             [
-              _c("b-form-file", {
-                attrs: {
-                  accept: ".xls",
-                  state: Boolean(_vm.file),
-                  placeholder: "Archivo seleccionado..."
-                },
-                model: {
-                  value: _vm.file,
-                  callback: function($$v) {
-                    _vm.file = $$v
-                  },
-                  expression: "file"
-                }
-              })
-            ],
-            1
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { staticClass: "btn btn-primary" }, [
+                  _c("i", {
+                    staticClass: "fa fa-folder-open-o",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(" Seleccionar un archivo\n                  "),
+                  _c("input", {
+                    attrs: { type: "file", accept: ".pdf", name: "myfile" },
+                    on: { change: _vm.onFileSelected }
+                  })
+                ])
+              ])
+            ]
           ),
           _vm._v(" "),
           _c(
