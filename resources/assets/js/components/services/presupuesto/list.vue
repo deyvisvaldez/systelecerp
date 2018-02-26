@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <div>
     <!-- User Interface controls -->
     <b-row>
       <b-col md="6" class="my-1">
@@ -78,7 +78,7 @@
         </b-card>
       </template>
     </b-table>
-  </b-container>
+  </div>
 </template>
 
 <script>
@@ -96,8 +96,11 @@ export default {
       subItem: [],
       subItemSelect: 'presupuesto',
       fields: [
-        { key: 'numero', label: 'Numero', sortable: true },
-        { key: 'usuario', label: 'Usuario' },
+        { key: 'numero', label: 'Num', sortable: true },
+        { key: 'created_at', label: 'Fecha' },
+        { key: 'presupuestador', label: 'Presupuesta' },
+        { key: 'vendedor', label: 'Vendedor' },
+        { key: 'cliente', label: 'Cliente' },
         { key: 'costo_material', label: '$ Mat.' },
         { key: 'costo_mo_montaje', label: '$ Mont.' },
         { key: 'costo_mo_programacion', label: '$ Prog.' },

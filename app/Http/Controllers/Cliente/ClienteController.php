@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 
 class ClienteController extends Controller
 {
-    
     public function index()
     {
         $clientes = Cliente::orderBy('nombre', 'asc')->get();

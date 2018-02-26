@@ -18,7 +18,9 @@ class CreatePresupuestosTable extends Migration
             $table->integer('obra_id')->unsigned();
             $table->string('numero')->required();
             $table->string('descripcion')->nullable();
-            $table->string('usuario')->required();
+            $table->string('presupuestador')->required();
+            $table->string('vendedor')->required();
+            $table->string('cliente')->nullable();
             $table->string('estado')->nullable();
             $table->double('costo_material')->nullable();
             $table->double('costo_mo_montaje')->nullable();

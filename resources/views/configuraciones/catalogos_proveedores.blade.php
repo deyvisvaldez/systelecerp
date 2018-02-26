@@ -1,8 +1,12 @@
-@extends('layouts.app')
+@extends('configuraciones')
 
-@section('content')
-<!--
-<b-card  bg-variant="dark" text-variant="white" title="Card Title">
+@section('configuracion')
+<b-card border-variant="primary"
+            header="Carga de listado de catalogo"
+            header-bg-variant="primary"
+            header-text-variant="white"
+            align="center">
+    <p class="card-text">Nota: Es necesario que el archivo tenga extension .xls y posea los campos .</p>
     <b-form action="{{ URL::to('importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
     <b-form-group>
     {{ csrf_field() }}
@@ -26,12 +30,4 @@
     </b-form.group>
     </b-form>
 </b-card>
--->
-<section class="dashboard-counts no-padding-bottom">
-    <div class="container-fluid">
-        <div class="row bg-white has-shadow">
-            <proveedores></proveedores>
-        </div>
-    </div>
-</section>
 @endsection

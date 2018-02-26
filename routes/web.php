@@ -36,5 +36,6 @@ Route::get('/stocks', 'PagesController@stocks')->name('stocks');
 Route::get('/clientes', 'PagesController@clientes')->name('clientes');
 Route::get('/proveedores', 'PagesController@proveedores')->name('proveedores');
 Route::get('/configuraciones', 'PagesController@configuraciones')->name('configuraciones');
+Route::get('/configuraciones_catalogos', 'PagesController@configuraciones_catalogos')->name('configuraciones_catalogos');
 
 Route::post('importExcel', 'Proveedor\ProveedorCatalogoController@importExcel');

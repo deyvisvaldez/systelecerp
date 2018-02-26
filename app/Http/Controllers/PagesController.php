@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Proveedor;
 
 class PagesController extends Controller
 {
@@ -58,11 +59,18 @@ class PagesController extends Controller
 
     public function proveedores() 
     {
-        return view('proveedores');
+        $proveedores = Proveedor::all();
+        return view('proveedores', array('proveedores' => $proveedores));
     }
 
     public function configuraciones() 
     {
         return view('configuraciones');
+    }
+
+    public function configuraciones_catalogos() 
+    {
+        $proveedores = Proveedor::all();
+        return view('configuraciones.catalogos_proveedores', array('proveedores' => $proveedores));
     }
 }

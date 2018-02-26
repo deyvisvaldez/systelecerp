@@ -24,4 +24,3 @@ Route::resource('cotizacion', 'Cotizacion\CotizacionController', ['only' => ['in
 Route::resource('presupuesto', 'Presupuesto\PresupuestoController', ['only' => ['index', 'store', 'update', 'destroy']]);
 Route::resource('proveedor', 'Proveedor\ProveedorController', ['only' => ['index', 'store', 'update', 'destroy']]);
 Route::resource('proveedor.catalogo', 'Proveedor\ProveedorCatalogoController', ['only' => ['index', 'store', 'update', 'destroy']]);
-Route::post('importExcel', 'Proveedor\ProveedorCatalogoController@importExcel');

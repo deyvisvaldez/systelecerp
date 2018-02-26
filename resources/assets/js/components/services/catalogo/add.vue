@@ -5,16 +5,7 @@
     </b-btn>
     
     <b-modal ref="addCatalogoModal" hide-footer title="Agregar Catalogo">
-      <form enctype="multipart/form-data" id="my-form">
-            <div class="form-group">
-                <label class="btn btn-primary">
-                    <i class="fa fa-folder-open-o" aria-hidden="true"></i>&nbsp;Seleccionar un archivo
-                    <input type="file" accept=".pdf" @change="onFileSelected" name="myfile">
-                </label>
-            </div>
-        </form>
-      <b-btn variant="primary" @click="save()">Guardar</b-btn>
-      <b-btn variant="danger" @click="hideModal()">Cerrar</b-btn>
+      <file-upload :url='url' :thumb-url='thumbUrl' :headers="headers" @change="onFileChange"></file-upload>
     </b-modal>
   </p>
 </template>
@@ -22,10 +13,13 @@
 <script>
 import swal from 'sweetalert2'
 import { bus } from '../../../app.js'
+import FileUpload from 'vue-upload-component/dist/vue-upload-component.part.js'
+import axios from 'axios'
 
 export default {
   data () {
     return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       url: 'http://localhost/systelecerp/public/api',
       file: null,
       fileValidate: {
@@ -37,8 +31,13 @@ export default {
           nombre: '',
           direccion: '',
           descuento: 0
-      }
+      },
+      headers: {'access-token': '<your-token>'},
+      filesUploaded: []
     }
+  },
+  components: {
+    FileUpload,
   },
   props: [
     'item'
@@ -85,8 +84,9 @@ export default {
     },
     
     add () {
-      this.$http.post(this.url + '/proveedor/' + this.proveedor.id + '/catalogo', this.file)
+      this.$http.post(this.url + '/proveedor/' + this.proveedor.id + '/catalogo', this.file )
       .then(response => {
+        next();
         bus.$emit('subItems', response.data)  
         this.hideModal()
         this.alertSuccess()
@@ -95,18 +95,32 @@ export default {
       })
     },
 
-    onFileSelected (event) {
+     onFileSelected (event) {
         const file = event.target.files[0];
-        const formData = new FormData($("#catalogo")[0]);
-        this.$http.post(this.url + '/proveedor/' + this.proveedor.id + '/catalogo', formData)
+        const formData = new FormData($("#my-form")[0]);
+        //const formData = new FormData();
+        //formData.append("my-file", file);
+        Vue.http.post(`http://localhost/systelecerp/public/importExcel`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'X-CSRF-TOKEN': this.csrf
+          }
+        })
         .then(res => {
-            bus.$emit('subItems', response.data)  
-        this.hideModal()
-        this.alertSuccess()
+            //todo ok
         },
         error => {
-            this.alertError()
+            //todo mal :P
         })
+    },
+
+    thumbUrl (file) {
+      return file.myThumbUrlProperty
+    },
+    
+    onFileChange (file) {
+      // Handle files like:
+      this.fileUploaded = file
     }
   }
 }

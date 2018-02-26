@@ -9,9 +9,10 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+
 import BootstrapVue from 'bootstrap-vue'
 import VueResource from 'vue-resource'
-
+import FileUpload from 'v-file-upload'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -20,6 +21,8 @@ import VueResource from 'vue-resource'
  */
 Vue.use(BootstrapVue);
 Vue.use(VueResource);
+Vue.use(FileUpload)
+
 
 // PAGES GENERAL
 Vue.component('clientes', require('./components/pages/clientes.vue'));

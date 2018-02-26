@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\CotizacionTrabajo;
+use App\PresupuestoTrabajo;
 use App\Obra;
 
 class Presupuesto extends Model
@@ -18,7 +18,9 @@ class Presupuesto extends Model
     protected $fillable =  array(
         'numero',
         'descripcion',
-        'usuario',
+        'presupuestador',
+        'vendedor',
+        'cliente',
         'estado',
         'costo_material',
         'costo_mo_montaje',
@@ -27,9 +29,9 @@ class Presupuesto extends Model
         'obra_id'
     );
 
-    public function cotizaciontrabajo()
+    public function presupuestotrabajo()
     {
-        return $this->hasMany(CotizacionTrabajo::class);
+        return $this->hasMany(PresupuestoTrabajo::class);
     }
 
     public function obra()

@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <div>
     <!-- User Interface controls -->
     <b-row>
       <b-col md="6" class="my-1">
@@ -99,7 +99,7 @@
         </b-card>
       </template>
     </b-table>
-  </b-container>
+  </div>
 </template>
 
 <script>
